@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  gap: 10%;
+}
+
+.leftPanel {
+  flex: 1;
+  background-color: #00008B; /* Deep blue */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2rem;
+  width: 30%;
+}
+
+.logo {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.rightPanel {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 600px;
+}
+
+.formCard {
+  background: none;
+  box-shadow: none;
+}
+
+.customButton {
+  background-color: #00008B !important; /* Deep blue */
+  color: white !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.customButton:hover {
+  background-color: #0000CD !important; /* Slightly lighter blue on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15) !important;
+}
