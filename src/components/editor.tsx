@@ -1,9 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import React, { forwardRef } from 'react';
+import ReactQuill from 'react-quill';
 
 interface EditorProps {
   onChange: (value: string) => void;
@@ -40,26 +40,24 @@ const formats = [
   "image",
 ];
 
-const Editor = forwardRef<any, EditorProps>(({ value, onChange }, ref) => {
-  const ReactQuill = useMemo(
-    () => dynamic(() => import("react-quill"), { ssr: false }),
-    []
-  );
+const ReactQuillWrapper = dynamic(() => import("react-quill"), { 
+  ssr: false,
+  loading: () => <p>Loading...</p>
+});
+
+const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   return (
     <div>
-      <ReactQuill
+      <ReactQuillWrapper
         theme="snow"
         value={value}
         onChange={onChange}
         className="h-[65vh] mb-6 whitespace-pre-wrap"
         modules={modules}
         formats={formats}
-        ref={ref as any}
       />
     </div>
   );
-});
-
-Editor.displayName = 'Editor';
+};
 
 export default Editor;

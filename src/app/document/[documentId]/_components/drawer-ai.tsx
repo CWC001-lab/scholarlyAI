@@ -7,7 +7,7 @@ import { Loader } from "lucide-react";
 
 interface DrawerProps {
   description: string | null;
-  onImplement: (content: string) => void;
+  onImplement?: (content: string) => void;
 }
 
 const DrawerAI = ({ description, onImplement }: DrawerProps) => {
@@ -46,7 +46,7 @@ const DrawerAI = ({ description, onImplement }: DrawerProps) => {
           style={{ zIndex: 1000 }}
         >
           <Button
-            onClick={() => onImplement(scholarlyAISuggestion)}
+            onClick={() => onImplement && onImplement(scholarlyAISuggestion)}
             className="mb-4"
           >
             Implement

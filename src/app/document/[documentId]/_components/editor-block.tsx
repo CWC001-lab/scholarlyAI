@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from 'next/navigation';
 
 import {
   Form,
@@ -46,6 +47,7 @@ interface EditorBlockProps {
 
 const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
   const { toast } = useToast();
+  const router = useRouter();
   if (!document) {
     redirect("/");
   }
@@ -62,7 +64,12 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
     if (document.description) {
       EditorForm.setValue('description', document.description);
     }
-  }, [document.description]);
+  }, [document.description, EditorForm]);
+
+  // Remove this function
+  // const handleImplement = (content: string) => {
+  //   EditorForm.setValue('description', content);
+  // };
 
   async function onUpdateChange(values: z.infer<typeof FormSchema>) {
     try {
@@ -73,16 +80,21 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
     } catch (error) {}
   }
 
-  async function onDocumentDelete() {
+  const onDocumentDelete = async () => {
     try {
       await axios.delete(`/api/document/${document?.id}`);
       toast({
-        title: "Document Delete Successfully",
+        title: "Document Deleted Successfully",
       });
+      router.push('/overview');
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast({
+        title: "Error deleting document",
+        variant: "destructive",
+      });
     }
-  }
+  };
 
   return (
     <div className="px-4">
@@ -90,12 +102,9 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
         <ShareButton />
         <SettingsButton />
         <NotificationIcon />
-        <DrawerAI description={document.description} />
-        <form onSubmit={onDocumentDelete} className="flex float-right">
-          <Button type="submit" variant="destructive">
-            Delete
-          </Button>
-        </form>
+        <DrawerAI 
+          description={document.description} 
+        />
       </div>
       <Form {...EditorForm}>
         <form
@@ -127,7 +136,12 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
               </FormItem>
             )}
           ></FormField>
-          <Button type="submit">Save Changes</Button>
+          <div className="flex space-x-4">
+            <Button type="submit">Save Changes</Button>
+            <Button type="button" variant="destructive" onClick={onDocumentDelete}>
+              Delete
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
