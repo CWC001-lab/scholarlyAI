@@ -11,7 +11,7 @@ const Welcome: React.FC = () => {
   };
 
   const handleSkip = () => {
-    router.push('/document');
+    router.push('/dashboard'); // Changed from '/document' to '/dashboard'
   };
 
   return (
@@ -44,7 +44,7 @@ const Welcome: React.FC = () => {
           </p>  
 
           <button 
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md mb-2"
+            className="w-full bg-[#0017A0] hover:bg-[#0017A0]/90 text-white font-bold py-2 px-4 rounded shadow-md mb-2"
             onClick={handleCreateProject}
           >
             Create your first project

@@ -42,7 +42,7 @@ export default function IntroPage() {
                 <div className="flex flex-row gap-2">
 <Link
   href="#"
-  className="inline-flex h-10 items-center justify-center rounded-md bg-[#f9f9f9] px-8 text-sm font-medium text-primary shadow-lg transition-colors hover:bg-[#f0f0f0] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+  className="inline-flex h-10 items-center justify-center rounded-md bg-[#0017A0] px-8 text-sm font-medium text-white shadow-lg transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
   prefetch={false}
 >
   <svg
@@ -69,7 +69,7 @@ export default function IntroPage() {
 </Link>
                   <Link
                     href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-[#0017A0] px-8 text-sm font-medium text-white shadow transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   >
                     <SignInButton>Sign up</SignInButton>
                   </Link>
@@ -228,7 +228,7 @@ export default function IntroPage() {
         </li>
         {/* Add more features here */}
       </ul>
-      <button className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50">
+      <button className="inline-flex h-10 items-center justify-center rounded-md bg-[#0017A0] px-8 text-base font-medium text-white shadow transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0017A0] disabled:pointer-events-none disabled:opacity-50">
         Get started
       </button>
     </div>
@@ -258,7 +258,7 @@ export default function IntroPage() {
         </li>
         {/* Add more features here */}
       </ul>
-      <button className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50">
+      <button className="inline-flex h-10 items-center justify-center rounded-md bg-[#0017A0] px-8 text-base font-medium text-white shadow transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0017A0] disabled:pointer-events-none disabled:opacity-50">
         Get started
       </button>
     </div>
@@ -400,10 +400,10 @@ export default function IntroPage() {
 
 
          
-          <div className="relative h-20 w-full sm:h-[350px] md:h-[450px] lg:h-[420px]">
+          <div className="relative h- w-full sm:h-[350px] md:h-[500px] lg:h-[500px]">
   <img
-    src="/hero.gif"
-    alt="hero"
+    src="/project.jpeg"
+    alt="Project"
     className="h-full w-full rounded-lg shadow-lg object-cover"
   />
 </div>
@@ -535,7 +535,7 @@ export default function IntroPage() {
   <p className="text-gray-600 mb-6">
     Can't find the answer you're looking for? Please chat to our friendly team.
   </p>
-  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+  <button className="bg-[#0017A0] hover:bg-[#0017A0]/90 text-white font-bold py-2 px-4 rounded">
     Get in touch
   </button>
 </div>
@@ -560,7 +560,7 @@ export default function IntroPage() {
       placeholder="Enter your email"
       className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
-    <button className="bg-blue-500 hover:bg-blue-600 text-white ml-3 font-bold py-2 px-4 rounded-r-lg">
+    <button className="bg-[#0017A0] hover:bg-[#0017A0]/90 text-white ml-3 font-bold py-2 px-4 rounded-r-lg">
       Subscribe
     </button>
   </div>

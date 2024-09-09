@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { UserButton, useUser } from "@clerk/nextjs";
-import { AiOutlineDashboard, AiOutlineProject, AiOutlineFolder, AiOutlineBook, AiOutlineEdit, AiOutlineSafety, AiOutlineSetting, AiOutlineCustomerService } from 'react-icons/ai';
+import { AiOutlineDashboard, AiOutlineProject, AiOutlineFolder, AiOutlineBook, AiOutlineEdit, AiOutlineSafety, AiOutlineSetting, AiOutlineCustomerService, AiOutlineSearch } from 'react-icons/ai';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { db } from "@/utils/db";
 
 // Add this interface above the Sidebar component
@@ -24,6 +25,7 @@ const Sidebar = () => {
   const pathname = usePathname();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [userDocuments, setUserDocuments] = useState<Document[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -53,9 +55,16 @@ const Sidebar = () => {
     }
   };
 
+  const filteredProjects = userDocuments.filter(doc =>
+    doc.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const menuItems = [
+    { icon: AiOutlineProject, label: 'Projects', href: '/projects', subItems: filteredProjects.map(doc => ({ label: doc.title, href: `/document/${doc.id}` })) },
+
+
+
     { icon: AiOutlineDashboard, label: 'Overview', href: '/dashboard' },
-    { icon: AiOutlineProject, label: 'Projects', href: '/projects', subItems: userDocuments.map(doc => ({ label: doc.title, href: `/document/${doc.id}` })) },
     { icon: AiOutlineFolder, label: 'Resources', href: '/resources' },
     { icon: AiOutlineBook, label: 'Learning hub', href: '/learning' },
     { icon: AiOutlineEdit, label: 'Scratch pad', href: '/scratchpad' },
@@ -73,8 +82,18 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="p-4">
-        <Button onClick={handleNewProject} className="w-full">
+      <div className="p-4 space-y-4">
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search projects..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border rounded-md"
+          />
+          <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        </div>
+        <Button onClick={handleNewProject} className="w-full bg-[#0017A0] hover:bg-[#0017A0]/90 text-white">
           New Project
         </Button>
       </div>

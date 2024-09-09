@@ -159,7 +159,7 @@ const ProjectDescription: React.FC<ProjectDescriptionProps> = ({ projectData, on
         </button>
         <button 
           onClick={handleProceed}
-          className="mt-7 bg-blue-500 text-white py-4 px-6 rounded w-[20%] shadow-md hover:shadow-lg transition-shadow duration-300"
+          className="mt-7 bg-[#0017A0] hover:bg-[#0017A0]/90 text-white py-4 px-6 rounded w-[20%] shadow-md hover:shadow-lg transition-shadow duration-300"
         >
           Proceed 
         </button>

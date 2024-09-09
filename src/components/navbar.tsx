@@ -15,14 +15,14 @@ const Navbar = () => {
       </div>
       <div className="flex items-center space-x-4">
         <SignInButton>
-          <Button>Sign In</Button>
+          <Button className="bg-[#0017A0] hover:bg-[#0017A0]/90 text-white">Sign In</Button>
         </SignInButton>
         <SignUpButton>
-          <Button>Sign Up</Button>
+          <Button className="bg-[#0017A0] hover:bg-[#0017A0]/90 text-white">Sign Up</Button>
         </SignUpButton>
         <UserButton />
       </div>
-      </div>
+    </div>
   );
 };
 

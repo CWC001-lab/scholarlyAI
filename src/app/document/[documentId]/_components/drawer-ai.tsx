@@ -34,7 +34,7 @@ const DrawerAI = ({ description, onImplement }: DrawerProps) => {
       <Button
         onClick={handleScholarlyAISuggestion}
         disabled={isLoading}
-        className="float-right"
+        className="bg-[#0017A0] hover:bg-[#0017A0]/90 text-white"
       >
         {isLoading ? <Loader className="animate-spin mr-2" /> : null}
         Ask Scholarly AI
@@ -47,15 +47,15 @@ const DrawerAI = ({ description, onImplement }: DrawerProps) => {
         >
           <Button
             onClick={() => onImplement && onImplement(scholarlyAISuggestion)}
-            className="mb-4"
+            className="mb-4 bg-[#0017A0] hover:bg-[#0017A0]/90 text-white"
           >
             Implement
           </Button>
           <Button
             onClick={() => setIsOpen(false)}
-            className="mb-4 ml-2"
+            className="bg-[#0017A0] hover:bg-[#0017A0]/90 mb-4 ml-2"
           >
-            Close
+            x
           </Button>
           <div className="whitespace-pre-wrap">
             {scholarlyAISuggestion}

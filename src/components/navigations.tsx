@@ -19,7 +19,7 @@ export const Navigation = () => {
             Features
           </span>
         </Link>
-        <Link href="/pricing">
+        <Link href="/welcome">
           <span className={cn("text-gray-600 hover:text-gray-900", "font-medium")}>
             Pricing
           </span>

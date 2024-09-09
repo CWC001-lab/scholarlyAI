@@ -26,6 +26,13 @@ import DrawerAI from "./drawer-ai";
 import ShareButton from '@/components/ShareButton';
 import SettingsButton from '@/components/SettingsButton';
 import NotificationIcon from '@/components/NotificationIcon';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { AiOutlineEdit } from 'react-icons/ai'; // Or any other icon you prefer
 
 const FormSchema = z.object({
   title: z.string().min(2).max(50),
@@ -66,11 +73,6 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
     }
   }, [document.description, EditorForm]);
 
-  // Remove this function
-  // const handleImplement = (content: string) => {
-  //   EditorForm.setValue('description', content);
-  // };
-
   async function onUpdateChange(values: z.infer<typeof FormSchema>) {
     try {
       await axios.put(`/api/document/${document?.id}`, values);
@@ -102,6 +104,22 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
         <ShareButton />
         <SettingsButton />
         <NotificationIcon />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">
+              <AiOutlineEdit className="h-4 w-4 mr-2" />
+              Actions
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onClick={EditorForm.handleSubmit(onUpdateChange)}>
+              Save Changes
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={onDocumentDelete} className="text-red-600">
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <DrawerAI 
           description={document.description} 
         />
@@ -136,12 +154,12 @@ const EditorBlock: React.FC<EditorBlockProps> = ({ document }) => {
               </FormItem>
             )}
           ></FormField>
-          <div className="flex space-x-4">
+          {/* <div className="mt-120 flex space-x-4">
             <Button type="submit">Save Changes</Button>
             <Button type="button" variant="destructive" onClick={onDocumentDelete}>
               Delete
             </Button>
-          </div>
+          </div> */}
         </form>
       </Form>
     </div>

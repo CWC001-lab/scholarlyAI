@@ -11,7 +11,8 @@ export const Logo = () => {
       <Link href={"/"}>
         <Image src="/logo.svg" height={40} width={40} alt="logo" />
       </Link>
-      <h2 className={cn("text-2xl ml-2", karla.className)}>Scholarly prototype</h2>
+      <h2 className={cn("text-2xl font-bold ml-2", karla.className)}>Scholarly</h2>
     </div>
   );
 };
+  
