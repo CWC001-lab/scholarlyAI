@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Navbar from '@/components/navbar';
 import Image from "next/image";
@@ -11,18 +11,48 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function IntroPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  return (
-    <div className="flex flex-col min-h-[100dvh]">
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      console.log('Current scroll position:', scrollY);
+      if (scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
 
+    window.addEventListener('scroll', handleScroll);
+    console.log('Scroll event listener added');
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      console.log('Scroll event listener removed');
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    console.log('Scrolling to top');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  console.log('Render: showScrollTop =', showScrollTop);
+
+  return (
+    <div className="flex flex-col min-h-[100dvh] relative">
       <Navbar />
 
       {/* the home screen starts here */}
-      <div className="home">
+      <div id="home" className="home">
       <main className="flex-1">
         <section className="w-full py-12 sm:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -42,7 +72,7 @@ export default function IntroPage() {
                 <div className="flex flex-row gap-2">
 <Link
   href="#"
-  className="inline-flex h-10 items-center justify-center rounded-md bg-[#0017A0] px-8 text-sm font-medium text-white shadow-lg transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-black shadow-lg transition-colors hover:bg-[#0017A0]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
   prefetch={false}
 >
   <svg
@@ -98,7 +128,7 @@ export default function IntroPage() {
 
 
 {/* the features starts here */}
-      <div className="features py-12 sm:py-24 lg:py-32 bg-gray-100">
+      <div id="features" className="features py-12 sm:py-24 lg:py-32 bg-gray-100">
   <div className="container px-4 md:px-6">
 <div className="space-y-4 text-center">
   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl inline-block">
@@ -191,7 +221,7 @@ export default function IntroPage() {
 
 
 {/* the pricing starts here */}
-<div className="pricing-plans">
+<div id="pricing" className="pricing-plans">
   <div className="container mx-auto py-7 sm:py-15 lg:py-19 flex flex-col md:flex-row justify-between items-center">
     <div className="text-center space-y-2">
       <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl xl:text-4xl">
@@ -249,7 +279,7 @@ export default function IntroPage() {
             >
               <path
                 fillRule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                 clipRule="evenodd"
               />
             </svg>
@@ -636,6 +666,30 @@ export default function IntroPage() {
         </div>
       </div>
     </footer>
+
+    {/* Scroll to top button */}
+    {showScrollTop && (
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 bg-[#0017A0] hover:bg-[#0017A0]/90 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+        aria-label="Scroll to top"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+      </button>
+    )}
 
     </div>
   );
